@@ -5,21 +5,21 @@ from models.experimental import attempt_load
 from utils.torch_utils import select_device
 from utils.detections import Detections
 from utils.datasets import letterbox
-from byte_tracker import BYTETracker
+# from byte_tracker import BYTETracker
 import numpy as np
 import torch
 import yaml
 
 
 class YOLOv7:
-    def __init__(self, conf_thres=0.25, iou_thres=0.45, img_size=640, ocr_classes=[]):
+    def __init__(self, conf_thres=0.25, iou_thres=0.45, img_size=640, ocr_classes=["license-plate"]):
         self.settings = {
             'conf_thres':conf_thres,
             'iou_thres':iou_thres,
             'img_size':img_size,
             'ocr_classes':ocr_classes
         }
-        self.tracker = BYTETracker()
+        # self.tracker = BYTETracker()
         self.text_recognizer = None
 
     def load(self, weights_path, classes, ocr_weights=None, device='cpu'):
@@ -80,8 +80,8 @@ class YOLOv7:
                     for *xyxy, conf, cls in reversed(det):
                         raw_detection = np.concatenate((raw_detection, [[int(xyxy[0]), int(xyxy[1]), int(xyxy[2]), int(xyxy[3]), round(float(conf), 2), int(cls)]]))
 
-            if track:
-                raw_detection = self.tracker.update(raw_detection)
+            # if track:
+            #     raw_detection = self.tracker.update(raw_detection)
             
             detections = Detections(raw_detection, self.classes, tracking=track).to_dict()
 

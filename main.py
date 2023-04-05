@@ -1,5 +1,5 @@
 from object_detection import YOLOv7
-from detections import draw
+from utils.detections import draw
 import json
 import cv2
 
