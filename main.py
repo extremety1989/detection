@@ -28,7 +28,10 @@ except KeyboardInterrupt:
     pass
 
 webcam.release()
+# license_color = cv2.cvtColor(carplate_extract_img, cv2.COLOR_BGR2GRAY)
+# carplate_extract_img_colored = cv2.medianBlur(license_color, 3)
 
+# _, license = cv2.threshold(carplate_extract_img_colored, 120, 255, cv2.THRESH_BINARY)
 # from PIL import Image
 # plate = "L21lZGlhLXBhL1dWMTcvMS80L1dWMTcxNDM1NTgyXzEuanBlZw_rct"
 # img = cv2.imread(f'./{plate}.webp',cv2.COLOR_BGR2GRAY)
